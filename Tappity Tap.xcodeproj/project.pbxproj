@@ -17,6 +17,8 @@
 		64C5383E2252841E002C5091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C5383C2252841E002C5091 /* LaunchScreen.storyboard */; };
 		64C538492252841E002C5091 /* Tappity_TapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C538482252841E002C5091 /* Tappity_TapTests.swift */; };
 		64C538542252841E002C5091 /* Tappity_TapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C538532252841E002C5091 /* Tappity_TapUITests.swift */; };
+		64C538652252880B002C5091 /* SplashScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C538642252880B002C5091 /* SplashScreen.sks */; };
+		64C5386722528EE4002C5091 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C5386622528EE4002C5091 /* MainMenu.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		64C5384F2252841E002C5091 /* Tappity TapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tappity TapUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C538532252841E002C5091 /* Tappity_TapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tappity_TapUITests.swift; sourceTree = "<group>"; };
 		64C538552252841F002C5091 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64C538642252880B002C5091 /* SplashScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SplashScreen.sks; sourceTree = "<group>"; };
+		64C5386622528EE4002C5091 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +107,8 @@
 		64C5382C2252841D002C5091 /* Tappity Tap */ = {
 			isa = PBXGroup;
 			children = (
+				64C53861225285AD002C5091 /* Scenes */,
 				64C5382D2252841D002C5091 /* AppDelegate.swift */,
-				64C5382F2252841D002C5091 /* GameScene.sks */,
 				64C538312252841D002C5091 /* Actions.sks */,
 				64C538332252841D002C5091 /* GameScene.swift */,
 				64C538352252841D002C5091 /* GameViewController.swift */,
@@ -132,6 +136,16 @@
 				64C538552252841F002C5091 /* Info.plist */,
 			);
 			path = "Tappity TapUITests";
+			sourceTree = "<group>";
+		};
+		64C53861225285AD002C5091 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				64C5382F2252841D002C5091 /* GameScene.sks */,
+				64C538642252880B002C5091 /* SplashScreen.sks */,
+				64C5386622528EE4002C5091 /* MainMenu.sks */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +256,8 @@
 				64C538302252841D002C5091 /* GameScene.sks in Resources */,
 				64C5383B2252841E002C5091 /* Assets.xcassets in Resources */,
 				64C5383E2252841E002C5091 /* LaunchScreen.storyboard in Resources */,
+				64C538652252880B002C5091 /* SplashScreen.sks in Resources */,
+				64C5386722528EE4002C5091 /* MainMenu.sks in Resources */,
 				64C538322252841D002C5091 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
