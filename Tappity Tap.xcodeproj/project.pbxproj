@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6411D8CA2253FC1900CFDD43 /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6411D8C92253FC1900CFDD43 /* GameOver.sks */; };
 		64C5382E2252841D002C5091 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5382D2252841D002C5091 /* AppDelegate.swift */; };
 		64C538302252841D002C5091 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C5382F2252841D002C5091 /* GameScene.sks */; };
 		64C538322252841D002C5091 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C538312252841D002C5091 /* Actions.sks */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6411D8C92253FC1900CFDD43 /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
 		64C5382A2252841D002C5091 /* Tappity Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tappity Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C5382D2252841D002C5091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64C5382F2252841D002C5091 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		64C53861225285AD002C5091 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6411D8C92253FC1900CFDD43 /* GameOver.sks */,
 				64C5382F2252841D002C5091 /* GameScene.sks */,
 				64C538642252880B002C5091 /* SplashScreen.sks */,
 				64C5386622528EE4002C5091 /* MainMenu.sks */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C538392252841D002C5091 /* Main.storyboard in Resources */,
+				6411D8CA2253FC1900CFDD43 /* GameOver.sks in Resources */,
 				64C538302252841D002C5091 /* GameScene.sks in Resources */,
 				64C5383B2252841E002C5091 /* Assets.xcassets in Resources */,
 				64C5383E2252841E002C5091 /* LaunchScreen.storyboard in Resources */,
