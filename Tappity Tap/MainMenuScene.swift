@@ -8,8 +8,14 @@
 
 import SpriteKit
 
-class MainMenu: SKScene{
+class MainMenuScene: SKScene{
     
+    override func didMove(to view: SKView) {
+        let background = SKSpriteNode(imageNamed: "TappityTap")
+        //background.size = 
+        background.position = CGPoint(x: size.width/2, y: size.width/2)
+        self.addChild(background)
+    }
     //transitions the main menu scene to the game scene after the scene is touched
     func sceneTapped(){
         let myScene = GameScene(size:self.size)

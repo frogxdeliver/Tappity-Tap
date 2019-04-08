@@ -15,9 +15,16 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
+        let scene1 = MainMenuScene(size: CGSize(width: 1024, height: 768))
+        //let scene1 = MainMenuScene(size: CGSize(width: 1068.44, height: 601))
+        let skView = self.view as! SKView
+        skView.showsFPS = true
+        skView.ignoresSiblingOrder = true
+        scene1.scaleMode = .aspectFill
+        skView.presentScene(scene1)
+        /*if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "SplashScreen") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -29,7 +36,7 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
-        }
+        }*/
     }
 
     override var shouldAutorotate: Bool {
