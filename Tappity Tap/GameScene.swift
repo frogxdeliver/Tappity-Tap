@@ -9,11 +9,11 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    let adventurer = SKSpriteNode(imageNamed: "jump")
-    let ground1 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
-    let ground2 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
-    let ground3 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
     var playerAlive = true
+    let playerMovePointsPerSec: CGFloat = 200
+    var velocity = CGPoint.zero
+    let adventurer = SKSpriteNode(imageNamed: "jump")
+    var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
@@ -39,29 +39,40 @@ class GameScene: SKScene {
             background.name = "background"
             background.zPosition = -1
             addChild(background)
+            
+            let floor = floorNode()
+            floor.anchorPoint = CGPoint.zero
+            floor.position = CGPoint(x:CGFloat(i)*floor.size.width, y:0)
+            floor.name = "floor"
+            floor.zPosition = 1
+            addChild(floor)
         }
-        adventurer.position = CGPoint(x: 125, y: 100)
+        adventurer.position = CGPoint(x: 500, y: 150)
         adventurer.setScale(2.5)
         addChild(adventurer)
         
-        let actionMove = SKAction.moveBy(x: size.width - adventurer.size.width, y: 0, duration: 25)
+        //let actionMove = SKAction.moveBy(x: size.width - adventurer.size.width, y: 0, duration: 25)
         
-        adventurer.run(SKAction.sequence([actionMove]))
+        //adventurer.run(SKAction.sequence([actionMove]))
+        
+        
         
         addChild(cameraNode)
         camera = cameraNode
         cameraNode.position = CGPoint(x: size.width/2, y: size.width/3.5)
         
-        ground1.position = CGPoint(x: 100, y: 20)
-        ground1.setScale(2.5)
-        addChild(ground1)
-        ground2.position = CGPoint(x: 470, y: 20)
-        ground2.setScale(2.5)
-        addChild(ground2)
-        ground3.position = CGPoint(x: 840, y: 20)
-        ground3.setScale(2.5)
-        addChild(ground3)
+    }
+    override func update(_ currentTime: TimeInterval) {
+        if lastUpdateTime > 0 {
+            dt = currentTime - lastUpdateTime
+        } else{
+            dt = 0
+        }
+        lastUpdateTime = currentTime
         
+        move(sprite: adventurer, velocity: CGPoint(x: playerMovePointsPerSec, y: 0))
+        
+        moveCamera()
     }
     
     //used for the red box, animating, and error code
@@ -72,16 +83,7 @@ class GameScene: SKScene {
         playableRect = CGRect(x: 0, y: playableMargin,
                               width: size.width,
                               height: playableHeight)
-        /*var textures: [SKTexture] = []
-         //animates the zombie with an array looping through different images
-         for i in 1...4{
-         textures.append(SKTexture(imageNamed: ":zombie\(i)"))
-         }
-         textures.append(textures[2])
-         textures.append(textures[1])
-         
-         zombieAnimation = SKAction.animate(with: textures,
-         timePerFrame: 0.1)*/
+     
         super.init(size: size)
     }
     required init(coder aDecoder: NSCoder){
@@ -123,16 +125,17 @@ class GameScene: SKScene {
         
         let floor1 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
         floor1.anchorPoint = CGPoint.zero
+        floor1.setScale(3.5)
         //Whereever the player is
         //floor1.position = CGPoint
         floorNode.addChild(floor1)
         
         let floor2 = SKSpriteNode(imageNamed: "Jungle_Floor_2")
         floor2.anchorPoint = CGPoint.zero
+        floor2.setScale(3.5)
         floor2.position =
             CGPoint(x: floor1.size.width, y:0)
         floorNode.addChild(floor2)
-        
         
         floorNode.size = CGSize(
             width: floor1.size.width + floor2.size.width,
@@ -152,17 +155,15 @@ class GameScene: SKScene {
                 background.position = CGPoint(x: background.position.x + background.size.width*2, y: background.position.y)
             }
         }
+        enumerateChildNodes(withName: "floor") { node, _ in
+            let floor = node as! SKSpriteNode
+            if floor.position.x + floor.size.width < self.cameraRect.origin.x {
+                floor.position = CGPoint(x: floor.position.x + floor.size.width*2, y: floor.position.y)
+            }
+        }
     }
     
     /*
-     //calculates the amount the camera needs to move
-     func moveCamera() {
-     let backgroundVelocity =
-     CGPoint(x: cameraMovePointsPerSec, y: 0)
-     let amountToMove = backgroundVelocity * CGFloat(dt)
-     cameraNode.position += amountToMove
-     }
-     
      //calculates the current visible playable area
      var cameraRect : CGRect{
      let x = cameraNode.position.x - size.width/2
@@ -186,5 +187,16 @@ class GameScene: SKScene {
         addChild(coin)
     }
     
+    func move(sprite: SKSpriteNode, velocity: CGPoint){
+        let amountToMove = CGPoint(x: velocity.x * CGFloat(dt),
+                                   y: velocity.y * CGFloat(dt))
+        
+        sprite.position = CGPoint(x: sprite.position.x + amountToMove.x,
+                                  y: sprite.position.y + amountToMove.y)
+    }
+    
+    /*func boundsCheckPlayer(){
+        
+    }*/
     
 }
