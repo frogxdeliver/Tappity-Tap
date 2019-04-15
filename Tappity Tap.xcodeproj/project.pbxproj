@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		640D19B4225BD2F300902441 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D19B3225BD2F300902441 /* GameOverScene.swift */; };
 		6411D8CA2253FC1900CFDD43 /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6411D8C92253FC1900CFDD43 /* GameOver.sks */; };
+		645696732264D2B10001CEEA /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645696722264D2B10001CEEA /* MyUtils.swift */; };
 		64C5382E2252841D002C5091 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5382D2252841D002C5091 /* AppDelegate.swift */; };
 		64C538302252841D002C5091 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C5382F2252841D002C5091 /* GameScene.sks */; };
 		64C538322252841D002C5091 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C538312252841D002C5091 /* Actions.sks */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		640D19B3225BD2F300902441 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		6411D8C92253FC1900CFDD43 /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
+		645696722264D2B10001CEEA /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		64C5382A2252841D002C5091 /* Tappity Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tappity Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C5382D2252841D002C5091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64C5382F2252841D002C5091 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				64C538332252841D002C5091 /* GameScene.swift */,
 				640D19B3225BD2F300902441 /* GameOverScene.swift */,
 				64C538352252841D002C5091 /* GameViewController.swift */,
+				645696722264D2B10001CEEA /* MyUtils.swift */,
 				64C538372252841D002C5091 /* Main.storyboard */,
 				64C5383A2252841E002C5091 /* Assets.xcassets */,
 				64C5383C2252841E002C5091 /* LaunchScreen.storyboard */,
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C538342252841D002C5091 /* GameScene.swift in Sources */,
+				645696732264D2B10001CEEA /* MyUtils.swift in Sources */,
 				64C538362252841D002C5091 /* GameViewController.swift in Sources */,
 				64C5382E2252841D002C5091 /* AppDelegate.swift in Sources */,
 				640D19B4225BD2F300902441 /* GameOverScene.swift in Sources */,
