@@ -9,6 +9,10 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let adventurer = SKSpriteNode(imageNamed: "jump")
+    let ground1 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
+    let ground2 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
+    let ground3 = SKSpriteNode(imageNamed: "Jungle_Floor_1")
     var playerAlive = true
     var dt: TimeInterval = 0
     let cameraNode = SKCameraNode()
@@ -36,6 +40,28 @@ class GameScene: SKScene {
             background.zPosition = -1
             addChild(background)
         }
+        adventurer.position = CGPoint(x: 125, y: 100)
+        adventurer.setScale(2.5)
+        addChild(adventurer)
+        
+        let actionMove = SKAction.moveBy(x: size.width - adventurer.size.width, y: 0, duration: 25)
+        
+        adventurer.run(SKAction.sequence([actionMove]))
+        
+        addChild(cameraNode)
+        camera = cameraNode
+        cameraNode.position = CGPoint(x: size.width/2, y: size.width/3.5)
+        
+        ground1.position = CGPoint(x: 100, y: 20)
+        ground1.setScale(2.5)
+        addChild(ground1)
+        ground2.position = CGPoint(x: 470, y: 20)
+        ground2.setScale(2.5)
+        addChild(ground2)
+        ground3.position = CGPoint(x: 840, y: 20)
+        ground3.setScale(2.5)
+        addChild(ground3)
+        
     }
     
     //used for the red box, animating, and error code
