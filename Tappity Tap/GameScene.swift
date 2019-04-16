@@ -73,6 +73,7 @@ class GameScene: SKScene {
         move(sprite: adventurer, velocity: CGPoint(x: playerMovePointsPerSec, y: 0))
         
         moveCamera()
+        boundsCheck()
     }
     
     //used for the red box, animating, and error code
@@ -176,6 +177,29 @@ class GameScene: SKScene {
      height: playableRect.height)
      }*/
     
+    //detect screen taps
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        jump()
+    }
+    
+    //the adventurer jumps
+    func jump(){
+        let actionJump = SKAction.moveBy(x: 0, y: +200, duration: 0.8)
+        let actionWait = SKAction.moveBy(x: 0, y: 0, duration: 0.8)
+        let actionFall = SKAction.moveBy(x: 0, y: -200, duration: 0.8)
+        adventurer.run(SKAction.sequence([actionJump]))
+        adventurer.run(SKAction.sequence([actionWait, actionFall]))
+    }
+    
+    func boundsCheck(){
+        if adventurer.position.y >= 500{
+            adventurer.position.y = 500
+        }
+        if adventurer.position.y < 150{
+            adventurer.position.y = 150
+        }
+    }
+    
     func spawnCoin(){
         let coin = SKSpriteNode(imageNamed: "coin")
         coin.name = "coin"
@@ -194,9 +218,5 @@ class GameScene: SKScene {
         sprite.position = CGPoint(x: sprite.position.x + amountToMove.x,
                                   y: sprite.position.y + amountToMove.y)
     }
-    
-    /*func boundsCheckPlayer(){
-        
-    }*/
     
 }
