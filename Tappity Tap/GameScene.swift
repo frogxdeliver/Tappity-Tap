@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     var playerAlive = true
+    var gameOver = false
     let playerMovePointsPerSec: CGFloat = 200
     var velocity = CGPoint.zero
     let adventurer = SKSpriteNode(imageNamed: "jump")
@@ -74,6 +75,31 @@ class GameScene: SKScene {
         
         moveCamera()
         boundsCheck()
+        
+        //testing game over
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            self.gameOver = true
+            print("GameOver")
+            //create a new Scene
+            let gameOverScene = GameOverScene(size: self.size, won: false)
+            gameOverScene.scaleMode = self.scaleMode
+            //transition to the new scene
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            //call the scene
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        })*/
+        
+        if (!playerAlive && !gameOver){
+            gameOver = true
+            print("GameOver")
+            //create a new Scene
+            let gameOverScene = GameOverScene(size: size, won: false)
+            gameOverScene.scaleMode = scaleMode
+            //transition to the new scene
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            //call the scene
+            view?.presentScene(gameOverScene, transition: reveal)
+        }
     }
     
     //used for the red box, animating, and error code
