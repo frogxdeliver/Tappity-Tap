@@ -24,7 +24,8 @@ class GameScene: SKScene {
         let y = cameraNode.position.y - size.height/2 + (size.height - playableRect.height)/2
         return CGRect(x: x, y: y, width: playableRect.width, height: playableRect.height)
     }
-    
+    let pointLabel = SKLabelNode(fontNamed: "Helvetica")
+    var points = 0
     
     override func didMove(to view: SKView) {
         //16:9 aspect ratio
@@ -56,12 +57,22 @@ class GameScene: SKScene {
         
         //adventurer.run(SKAction.sequence([actionMove]))
         
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run() { [weak self] in self?.spawnCoin()}, SKAction.wait(forDuration: 4.0)])))
         
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run() { [weak self] in self?.spawnSpike()}, SKAction.wait(forDuration: 3.0)])))
         
         addChild(cameraNode)
         camera = cameraNode
         cameraNode.position = CGPoint(x: size.width/2, y: size.width/3.5)
         
+        pointLabel.text = "Points: X"
+        pointLabel.fontColor = SKColor.black
+        pointLabel.fontSize = 100
+        pointLabel.zPosition = 150
+        pointLabel.horizontalAlignmentMode = .left
+        pointLabel.verticalAlignmentMode = .bottom
+        pointLabel.position = CGPoint(x: -playableRect.size.width/2 + CGFloat(20), y: -playableRect.size.height/2 + CGFloat(20))
+        cameraNode.addChild(pointLabel)
     }
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTime > 0 {
@@ -100,7 +111,15 @@ class GameScene: SKScene {
             //call the scene
             view?.presentScene(gameOverScene, transition: reveal)
         }
+        
+        pointLabel.text = "Points: \(points)"
+        
     }
+    
+    override func didEvaluateActions(){
+        checkCollisions()
+    }
+    
     
     //used for the red box, animating, and error code
     override init(size: CGSize){
@@ -227,14 +246,59 @@ class GameScene: SKScene {
     }
     
     func spawnCoin(){
-        let coin = SKSpriteNode(imageNamed: "coin")
+        let coin = SKSpriteNode(imageNamed: "Gold_1")
         coin.name = "coin"
+        coin.setScale(0.1)
         coin.position = CGPoint(
             x: cameraRect.maxX + coin.size.width/2,
             y: CGFloat.random(
                 min: cameraRect.minY + coin.size.height/2,
                 max: cameraRect.maxY - coin.size.height/2))
         addChild(coin)
+    }
+    
+    func adventurerHit(coin: SKSpriteNode) {
+        points += 1
+        coin.removeFromParent()
+        
+    }
+    
+    func spawnSpike(){
+        let spike = SKSpriteNode(imageNamed: "Spike")
+        spike.name = "spike"
+        spike.setScale(0.2)
+        spike.position = CGPoint(x: cameraRect.maxX + spike.size.width/2, y: 135)
+        addChild(spike)
+    }
+    
+    func adventurerHit(spike: SKSpriteNode) {
+        playerAlive = false
+    }
+    
+    func checkCollisions(){
+        var hitCoin: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "coin") { node, _ in
+            let coin = node as! SKSpriteNode
+            if coin.frame.intersects(self.adventurer.frame){
+                hitCoin.append(coin)
+            }
+        }
+        for coin in hitCoin {
+            adventurerHit(coin: coin)
+            
+        }
+        
+        var hitSpike: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "spike") { node, _ in
+            let spike = node as! SKSpriteNode
+            if spike.frame.intersects(self.adventurer.frame){
+                hitSpike.append(spike)
+            }
+        }
+        for spike in hitSpike {
+            adventurerHit(spike: spike)
+        }
+        
     }
     
     func move(sprite: SKSpriteNode, velocity: CGPoint){
